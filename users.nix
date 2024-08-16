@@ -55,7 +55,7 @@ in {
       xdg.userDirs.extraConfig = {
         XDG_REPOSITORY_DIR = "/users/${config.home.username}/home/Repositories";
         XDG_USER_HOME = "/users/${config.home.username}/home";
-        XDG_VAR_HOME = "/users/${config.home.username}/.var";
+        XDG_VAR_HOME = "/users/${config.home.username}/var";
         XDG_BIN_HOME = "/users/${config.home.username}/bin";
       };
 
