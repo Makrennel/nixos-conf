@@ -24,7 +24,7 @@
       specialArgs = { inherit inputs; };
       modules = [
         disko.nixosModules.default
-        (import ./disko.nix { device = ./primary-disk; })
+        (import ./disko.nix { device = builtins.readFile ./primary-disk; })
         #./hardware-configuration.nix
         {
           nixpkgs.hostPlatform = system;
