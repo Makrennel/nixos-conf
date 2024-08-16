@@ -13,7 +13,7 @@
 #    hyprscroller.inputs.hyprland.follows = "hyprland";
     nixvim.url = "github:nix-community/nixvim";
     stylix.url = "github:danth/stylix";
-    systems.url = "github:nix-systes/default-linux";
+    systems.url = "github:nix-systems/default-linux";
   };
 
   outputs = { self, nixpkgs, disko, home-manager, impermanence, stylix, systems, ... } @inputs: let
