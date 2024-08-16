@@ -21,7 +21,7 @@
       modules = [
         inputs.disko.nixosModules.default
         (import ./disko.nix { device = "/dev/nvme0n1"; efi-size = "2G"; main-size = "1T"; swap-size = "24G"; })
-        ./hardware-configuration.nix
+        #./hardware-configuration.nix
 
         inputs.home-manager.nixosModules.default
         {
