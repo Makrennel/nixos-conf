@@ -21,11 +21,10 @@
     eachSystem = nixpkgs.lib.genAttrs (import systems);
   in {
     nixosConfigurations = eachSystem (system: nixpkgs.lib.nixosSystem {
-    #nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
         disko.nixosModules.default
-        (import ./disko.nix { device = "/dev/vda"; }) # TODO: Some form of flake argument for this?
+        (import ./disko.nix { device = ./primary-disk; })
         #./hardware-configuration.nix
         {
           nixpkgs.hostPlatform = system;
@@ -53,5 +52,6 @@
         ./users.nix
       ];
     });
+    nixosConfigurations.default = nixosConfigurations.x86_64-linux;
   };
 }
