@@ -29,15 +29,15 @@ in {
     ({ config, lib, ... }: {
       home.homeDirectory = lib.mkForce "/users/${config.home.username}";
 
-      home.file.".bin".source = lib.file.mkOutOfStoreSymlink "bin";
-      home.file.".cache".source = lib.file.mkOutOfStoreSymlink "cache";
-      home.file.".config".source = lib.file.mkOutOfStoreSymlink "config";
-      home.file.".local".source = lib.file.mkOutOfStoreSymlink ".";
-      home.file.".var".source = lib.file.mkOutOfStoreSymlink "var";
+      home.file.".bin".source = config.lib.file.mkOutOfStoreSymlink "bin";
+      home.file.".cache".source = config.lib.file.mkOutOfStoreSymlink "cache";
+      home.file.".config".source = config.lib.file.mkOutOfStoreSymlink "config";
+      home.file.".local".source = config.lib.file.mkOutOfStoreSymlink ".";
+      home.file.".var".source = config.lib.file.mkOutOfStoreSymlink "var";
 
-      home.file.".fonts".source = lib.file.mkOutOfStoreSymlink "share/fonts";
-      home.file.".icons".source = lib.file.mkOutOfStoreSymlink "share/icons";
-      home.file.".themes".source = lib.file.mkOutOfStoreSymlink "share/themes";
+      home.file.".fonts".source = config.lib.file.mkOutOfStoreSymlink "share/fonts";
+      home.file.".icons".source = config.lib.file.mkOutOfStoreSymlink "share/icons";
+      home.file.".themes".source = config.lib.file.mkOutOfStoreSymlink "share/themes";
 
       xdg.cacheHome = "/users/${config.home.username}/cache";
       xdg.configHome = "/users/${config.home.username}/config";

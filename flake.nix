@@ -13,25 +13,33 @@
 #    hyprscroller.inputs.hyprland.follows = "hyprland";
     nixvim.url = "github:nix-community/nixvim";
     stylix.url = "github:danth/stylix";
+    systems.url = "github:nix-systes/default-linux";
   };
 
-  outputs = { self, nixpkgs, ... } @inputs: {
-    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+  outputs = { self, nixpkgs, disko, home-manager, impermanence, stylix, systems, ... } @inputs: let
+    inherit (nixpkgs) lib;
+    eachSystem = nixpkgs.lib.genAttrs (import systems);
+  in {
+    eachSystem (system: nixosConfigurations."${system}" = nixpkgs.lib.nixosSystem {
+    #nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
-        inputs.disko.nixosModules.default
-        (import ./disko.nix { device = "/dev/nvme0n1"; efi-size = "2G"; main-size = "1T"; swap-size = "24G"; })
+        disko.nixosModules.default
+        (import ./disko.nix { device = "/dev/vda"; }) # TODO: Some form of flake argument for this?
         #./hardware-configuration.nix
-
-        inputs.home-manager.nixosModules.default
         {
-          inputs.home-manager.useGlobalPkgs = true;
-          inputs.home-manager.useUserPackages = true;
-          inputs.home-manager.extraSpecialArgs = { inherit inputs; };
+          nixpkgs.hostPlatform = system;
         }
 
-        inputs.impermanence.nixosModules.impermanence
-        inputs.stylix.nixosModules.stylix
+        home-manager.nixosModules.default
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = { inherit inputs; };
+        }
+
+        impermanence.nixosModules.impermanence
+        stylix.nixosModules.stylix
 
         ./env.nix
         ./general.nix
@@ -44,6 +52,6 @@
         ./theme.nix
         ./users.nix
       ];
-    };
+    });
   };
 }
