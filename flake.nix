@@ -52,6 +52,5 @@
         ./users.nix
       ];
     });
-    nixosConfigurations.default = nixosConfigurations.x86_64-linux;
   };
 }
