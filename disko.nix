@@ -14,7 +14,7 @@
       content.type = "gpt";
 
       # I don't particularly care about old school BIOS - EFI only
-      partitions.ESP = {
+      content.partitions.ESP = {
         size = efi-size;
         type = "EF00";
         content.type = "filesystem";
@@ -23,7 +23,7 @@
       };
 
       # Encrypted Partition with LVM volume inside
-      partitions.luks = {
+      content.partitions.luks = {
         size = "100%";
         content = {
           type = "luks";
