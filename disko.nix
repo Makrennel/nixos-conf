@@ -1,4 +1,5 @@
 {
+  pkgs,
   device ? throw "Set this to the disk device you want to use, e.g. /dev/nvme0n1 or /dev/vda",
   efi-size ? "512M", # 1/2 a GiB by default 
   swap-size ? builtins.readFile (pkgs.runCommand "get-swap-size" {} "grep MemTotal /proc/meminfo | sed 's/[^0-9]*//g' | read mem; echo $mem'K' > $out"), # Same size as RAM by default
