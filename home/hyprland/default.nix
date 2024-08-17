@@ -8,7 +8,7 @@
   };
 
   imports = [
-#   inputs.hyprland.homeManagerModules.default
+   inputs.hyprland.homeManagerModules.default
     ./execs.nix
     ./general.nix
     ./keybinds.nix

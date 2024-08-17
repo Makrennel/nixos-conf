@@ -8,9 +8,9 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     impermanence.url = "github:nix-community/impermanence";
-#    hyprland.url = "git+https://github.com/hyprwm/hyprland?submodules=1";
-#    hyprscroller.url = "github:dawsers/hyprscroller";
-#    hyprscroller.inputs.hyprland.follows = "hyprland";
+    hyprland.url = "git+https://github.com/hyprwm/hyprland?submodules=1&ref=v0.41.2";
+    hyprscroller.url = "github:dawsers/hyprscroller";
+    hyprscroller.inputs.hyprland.follows = "hyprland";
     nixvim.url = "github:nix-community/nixvim";
     stylix.url = "github:danth/stylix";
     systems.url = "github:nix-systems/default-linux";
