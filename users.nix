@@ -4,7 +4,7 @@
     mkdir -p $out/{bin,cache,config,share,state,.var} &&
     mkdir -p $out/config/git &&
     mkdir -p $out/share/{fonts,icons,themes} &&
-    ln -s .. $out/home/Local &&
+    ln -s .. $out/home/Local
   '';
 in {
   security.pam.services.login.makeHomeDir = true;
