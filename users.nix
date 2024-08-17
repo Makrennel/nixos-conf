@@ -1,8 +1,7 @@
 { config, lib, pkgs, ... }: let
   skeleton = pkgs.runCommand "user-skeleton" {} ''
-    mkdir -p $out/home/{Desktop,Documents,Downloads,Local,Music,Images,Repositories,Shared,Templates,Videos} &&
-    mkdir -p $out/{bin,cache,config,share,state,.var} &&
-    mkdir -p $out/config/git &&
+    mkdir -p $out/home/{Desktop,Documents,Downloads,Music,Images,Repositories,Shared,Templates,Videos} &&
+    mkdir -p $out/{bin,cache,config,share,state,var} &&
     mkdir -p $out/share/{fonts,icons,themes} &&
     ln -s .. $out/home/Local
   '';
