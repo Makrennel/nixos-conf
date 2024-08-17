@@ -20,6 +20,7 @@
     inherit (nixpkgs) lib;
     eachSystem = nixpkgs.lib.genAttrs (import systems);
   in {
+    diskoConfigurations = eachSystem (system: import ./disko.nix;);
     nixosConfigurations = eachSystem (system: nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
