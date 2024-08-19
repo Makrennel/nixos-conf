@@ -43,7 +43,7 @@
         ./services.nix
         ./shell.nix
         ./theme.nix
-        ./users.nix
+        ./user.nix
       ];
 
       options.makrenos.disk = {
