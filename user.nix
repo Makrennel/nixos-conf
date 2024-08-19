@@ -2,7 +2,7 @@
   skeleton = pkgs.runCommand "user-skeleton" {} ''
     mkdir -p $out/home/{Desktop,Documents,Downloads,Music,Images,Repositories,Shared,Templates,Videos} &&
     mkdir -p $out/{bin,cache,config,share,state,var} &&
-    mkdir -p $out/share/{fonts,icons,themes} &&
+    mkdir -p $out/{.fonts,.icons,.themes} &&
     ln -s .. $out/home/Local
   '';
 in {
@@ -32,9 +32,9 @@ in {
         home.file.".local".source = config.lib.file.mkOutOfStoreSymlink ".";
         home.file.".var".source = config.lib.file.mkOutOfStoreSymlink "var";
 
-        home.file.".fonts".source = config.lib.file.mkOutOfStoreSymlink "share/fonts";
-        home.file.".icons".source = config.lib.file.mkOutOfStoreSymlink "share/icons";
-        home.file.".themes".source = config.lib.file.mkOutOfStoreSymlink "share/themes";
+        home.file."share/fonts".source = config.lib.file.mkOutOfStoreSymlink ".fonts";
+        home.file."share/icons".source = config.lib.file.mkOutOfStoreSymlink ".icons";
+        home.file."share/themes".source = config.lib.file.mkOutOfStoreSymlink ".themes";
 
         xdg.cacheHome = "${config.home.homeDirectory}/cache";
         xdg.configHome = "${config.home.homeDirectory}/config";
