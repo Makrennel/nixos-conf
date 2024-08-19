@@ -17,7 +17,6 @@
 
   outputs = { self, nixpkgs, disko, ... } @inputs: let
     inherit (nixpkgs) lib;
-    eachSystem = nixpkgs.lib.genAttrs (import systems);
   in {
     diskoConfigurations.default = import ./disko.nix;
     nixosModules.default = { config, inputs, lib, ... }: {
