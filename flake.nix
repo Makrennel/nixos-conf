@@ -19,7 +19,7 @@
     inherit (nixpkgs) lib;
   in {
     diskoConfigurations.default = import ./disko.nix;
-    nixosModules.default = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
         inputs.disko.nixosModules.default
