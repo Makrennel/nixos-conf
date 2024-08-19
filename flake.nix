@@ -19,19 +19,22 @@
     inherit (nixpkgs) lib;
   in {
     diskoConfigurations.default = import ./disko.nix;
-    nixosModules.default = { config, inputs, lib, ... }: {
-      imports = [
+    nixosModules.default = nixpkgs.lib.nixosSystem {
+      specialArgs = { inherit inputs; };
+      modules = [
         inputs.disko.nixosModules.default
         inputs.home-manager.nixosModules.default
         inputs.impermanence.nixosModules.impermanence
         inputs.stylix.nixosModules.stylix
 
         (import ./disko.nix {
-          device = config.makrenos.disk.device;
-          efi-size = config.makrenos.disk.efi-size;
-          main-size = config.makrenos.disk.main-size;
-          swap-size = config.makrenos.disk.swap-size;
+          device = ;
+          efi-size = "512M";
+          main-size = "100%FREE";
+          swap-size = "8G";
         })
+
+        ./hardware-configuration.nix
 
         ./env.nix
         ./general.nix
@@ -43,31 +46,13 @@
         ./shell.nix
         ./theme.nix
         ./user.nix
+
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = { inherit inputs; };
+        }
       ];
-
-      options.makrenos.disk = {
-        device = lib.mkOption {
-          type = lib.types.path;
-        };
-        efi-size = lib.mkOption {
-          type = lib.types.str;
-          default = "512M";
-        };
-        main-size = lib.mkOption {
-          type = lib.types.str;
-          default = "100%FREE";
-        };
-        swap-size = lib.mkOption {
-          type = lib.types.str;
-          default = "8G";
-        };
-      };
-
-      config = {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = { inherit inputs; };
-      };
     };
   };
 }
