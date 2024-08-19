@@ -16,7 +16,6 @@
   #networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   i18n.defaultLocale = "en_CA.UTF-8";
-  #console.font = "Lat2-Terminus16";
   console.useXkbConfig = true;
   services.xserver.xkb.layout = "gb";
   services.xserver.xkb.variant = "mac";

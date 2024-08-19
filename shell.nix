@@ -11,6 +11,8 @@
     alias ll="eza -ll"
     alias lf="ranger"
 
+    [ "$(pwd)" = "$HOME" ] && cd $XDG_USER_HOME
+
     fastfetch
   '';
 }

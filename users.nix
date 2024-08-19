@@ -6,60 +6,61 @@
     ln -s .. $out/home/Local
   '';
 in {
-  security.pam.services.login.makeHomeDir = true;
-  security.pam.makeHomeDir.skelDirectory = "${skeleton}";
-
-  users.users = let
-    createWheelUser = username: {
-      home = "/users/${username}";
-      createHome = false;
-      isNormalUser = true;
-      extraGroups = [ "wheel" "video" "input" ];
-      hashedPassword = lib.removeSuffix "\n" (builtins.readFile "${./passwords/${username}}"); # Default is 'password'
+  options = {
+    makrenos.username = lib.mkOption {
+      type = lib.types.str;
+      default = "alice";
     };
-  in {
-    alice = createWheelUser "alice";
   };
 
-  home-manager.users.alice = import ./homes/alice;
-    
-  home-manager.sharedModules = [
-    ./home
-    ({ config, lib, ... }: {
-      home.homeDirectory = lib.mkForce "/users/${config.home.username}";
+  config = {
+    security.pam.services.login.makeHomeDir = true;
+    security.pam.makeHomeDir.skelDirectory = "${skeleton}";
 
-      home.file.".bin".source = config.lib.file.mkOutOfStoreSymlink "bin";
-      home.file.".cache".source = config.lib.file.mkOutOfStoreSymlink "cache";
-      home.file.".config".source = config.lib.file.mkOutOfStoreSymlink "config";
-      home.file.".local".source = config.lib.file.mkOutOfStoreSymlink ".";
-      home.file.".var".source = config.lib.file.mkOutOfStoreSymlink "var";
+    users.users."${config.makrenos.username}" = {
+      home = "/user";
+      createHome = false;
+      isNormalUser = true;
+    };
 
-      home.file.".fonts".source = config.lib.file.mkOutOfStoreSymlink "share/fonts";
-      home.file.".icons".source = config.lib.file.mkOutOfStoreSymlink "share/icons";
-      home.file.".themes".source = config.lib.file.mkOutOfStoreSymlink "share/themes";
+    home-manager = {
+      users.user = import ./home;
+      sharedModules = [
+        ({ config, lib, ... }: {
+          home.file.".bin".source = config.lib.file.mkOutOfStoreSymlink "bin";
+          home.file.".cache".source = config.lib.file.mkOutOfStoreSymlink "cache";
+          home.file.".config".source = config.lib.file.mkOutOfStoreSymlink "config";
+          home.file.".local".source = config.lib.file.mkOutOfStoreSymlink ".";
+          home.file.".var".source = config.lib.file.mkOutOfStoreSymlink "var";
 
-      xdg.cacheHome = "/users/${config.home.username}/cache";
-      xdg.configHome = "/users/${config.home.username}/config";
-      xdg.dataHome = "/users/${config.home.username}/share";
-      xdg.stateHome = "/users/${config.home.username}/state";
+          home.file.".fonts".source = config.lib.file.mkOutOfStoreSymlink "share/fonts";
+          home.file.".icons".source = config.lib.file.mkOutOfStoreSymlink "share/icons";
+          home.file.".themes".source = config.lib.file.mkOutOfStoreSymlink "share/themes";
 
-      xdg.userDirs.enable = true;
-      xdg.userDirs.desktop = "/users/${config.home.username}/home/Desktop";
-      xdg.userDirs.documents = "/users/${config.home.username}/home/Documents";
-      xdg.userDirs.pictures = "/users/${config.home.username}/home/Images";
-      xdg.userDirs.music = "/users/${config.home.username}/home/Music";
-      xdg.userDirs.publicShare = "/users/${config.home.username}/home/Shared";
-      xdg.userDirs.templates = "/users/${config.home.username}/home/Templates";
-      xdg.userDirs.videos = "/users/${config.home.username}/home/Videos";
-      xdg.userDirs.extraConfig = {
-        XDG_REPOSITORY_DIR = "/users/${config.home.username}/home/Repositories";
-        XDG_USER_HOME = "/users/${config.home.username}/home";
-        XDG_VAR_HOME = "/users/${config.home.username}/var";
-        XDG_BIN_HOME = "/users/${config.home.username}/bin";
-      };
+          xdg.cacheHome = "${config.home.homeDirectory}/cache";
+          xdg.configHome = "${config.home.homeDirectory}/config";
+          xdg.dataHome = "${config.home.homeDirectory}/share";
+          xdg.stateHome = "${config.home.homeDirectory}/state";
 
-      home.preferXdgDirectories = true;
-    })
-  ];
+          xdg.userDirs.enable = true;
+          xdg.userDirs.desktop = "${config.home.homeDirectory}/home/Desktop";
+          xdg.userDirs.documents = "${config.home.homeDirectory}/home/Documents";
+          xdg.userDirs.pictures = "${config.home.homeDirectory}/home/Images";
+          xdg.userDirs.music = "${config.home.homeDirectory}/home/Music";
+          xdg.userDirs.publicShare = "${config.home.homeDirectory}/home/Shared";
+          xdg.userDirs.templates = "${config.home.homeDirectory}/home/Templates";
+          xdg.userDirs.videos = "${config.home.homeDirectory}/home/Videos";
+          xdg.userDirs.extraConfig = {
+            XDG_REPOSITORY_DIR = "${config.home.homeDirectory}/home/Repositories";
+            XDG_USER_HOME = "${config.home.homeDirectory}/home";
+            XDG_VAR_HOME = "${config.home.homeDirectory}/var";
+            XDG_BIN_HOME = "${config.home.homeDirectory}/bin";
+          };
+
+          home.preferXdgDirectories = true;
+        })
+      ];
+    };
+  };
 }
 

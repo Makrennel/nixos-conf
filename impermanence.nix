@@ -4,9 +4,9 @@
     mount /dev/root_vg/root /btrfs_tmp
 
     if [[ -e /btrfs_tmp/root ]]; then
-      mkdir -p /btrfs_tmp/old
+      mkdir -p /btrfs_tmp/old-roots
       timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%d_%H:%M:%S")
-      mv /btrfs_tmp/root "/btrfs_tmp/old/$timestamp"
+      mv /btrfs_tmp/root "/btrfs_tmp/old-roots/$timestamp"
     fi
 
     delete_subvolume_recursively() {
@@ -17,7 +17,7 @@
       btrfs subvolume delete "$1"
     }
 
-    for i in $(find /btrfs_tmp/old/ -maxdepth 1 -mtime +30); do
+    for i in $(find /btrfs_tmp/old-roots/ -maxdepth 1 -mtime +30); do
       delete_subvolume_recursively "$i"
     done
 

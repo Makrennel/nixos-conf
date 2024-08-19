@@ -3,7 +3,7 @@
     inputs.impermanence.nixosModules.home-manager.impermanence
   ];
 
-  home.persistence."/nix/persist/users/${config.home.username}" = {
+  home.persistence."/nix/persist/user" = {
     directories = [
       "bin"
       "home"
@@ -16,7 +16,7 @@
     ];
   };
 
-  home.persistence."/nix/persist/users/${config.home.username}/applications" = {
+  home.persistence."/nix/persist/user/applications" = {
     removePrefixDirectory = true;
     directories = [
       "Floorp/.floorp"
