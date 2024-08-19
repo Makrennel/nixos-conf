@@ -58,7 +58,8 @@
           "/nix".mountOptions = [ "noatime" ];
           "/persist".mountpoint = "/nix/persist";
           "/persist".mountOptions = [ "noatime" ];
-          "/home".mountpoint = "/users";
+          "/home".mountpoint = "/user";
+          "/home".mountOptions = [ "uid=1000" "gid=1000" ];
           "/var".mountpoint = "/var";
           "/opt".mountpoint = "/opt";
           "/flatpak".mountpoint = "/var/lib/flatpak";
