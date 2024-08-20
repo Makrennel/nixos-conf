@@ -55,7 +55,7 @@
       ];
     };
     templates.default = {
-      path = "./";
+      path = "${./}";
       description = "MakrenOS Single-User System Configuration";
       welcomeText = ''
         This configuration is optimized for single user usage.
