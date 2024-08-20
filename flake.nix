@@ -31,7 +31,7 @@
           device = getVar "${./variables/disk}";
           efi-size = getVar "${./variables/efi-size}";
           main-size = getVar "${./variables/main-size}";
-          swap-size = getvar "${./variables/swap-size}";
+          swap-size = getVar "${./variables/swap-size}";
         })
 
         ./hardware-configuration.nix
