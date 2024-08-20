@@ -34,7 +34,7 @@
           swap-size = getVar "${./variables/swap-size}";
         })
 
-        ./configuration.nix
+        ./general.nix # Equivalent to configuration.nix
         ./hardware-configuration.nix
 
         ./env.nix
