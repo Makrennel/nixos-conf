@@ -37,6 +37,6 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Generally, do not change after installing, even when updating
 }
 

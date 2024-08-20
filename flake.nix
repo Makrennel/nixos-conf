@@ -34,10 +34,10 @@
           swap-size = getVar "${./variables/swap-size}";
         })
 
+        ./configuration.nix
         ./hardware-configuration.nix
 
         ./env.nix
-        ./general.nix
         ./impermanence.nix
         ./neovim.nix
         ./packages.nix
@@ -58,31 +58,31 @@
       path = ./.;
       description = "MakrenOS Single-User System Configuration";
       welcomeText = ''
-        This configuration is optimized for single user usage.
-        The user directory is set to `/user`.
-        User files should be stored in `/user/home`.
+        ## This configuration is optimized for single user usage.
+        ## The user directory is set to `/user`.
+        ## User files should be stored in `/user/home`.
 
-        The following variables must be set:
-        `disk` - The disk you are installing on
-        `password` - Your password in hashed form
+        ## The following variables must be set:
+        - `disk` - The disk you are installing on
+        - `password` - Your password in hashed form
 
-        You can do so like this:
+        ## You can do so like this:
         ```
-        $ echo "/dev/nvme0n1" | sudo tee variables/disk
-        $ mkpasswd | sudo tee variables/password
+        - $ echo "/dev/nvme0n1" | sudo tee variables/disk
+        - $ mkpasswd | sudo tee variables/password
         ```
 
-        You may also want to change the following variables:
-        `username` - Your choice of username (defaults to "alice")
-        `efi-size` - The size of your EFI partition, mounted to /boot (defaults to 512M)
-        `main-size` - The size of your primary BTRFS partition where data is stored (defaults to 100%FREE)
-        `swap-size` - The size of your swap partition (defaults to 8G)
+        ## You may also want to change the following variables:
+        - `username` - Your choice of username (defaults to "alice")
+        - `efi-size` - The size of your EFI partition, mounted to /boot (defaults to 512M)
+        - `main-size` - The size of your primary BTRFS partition where data is stored (defaults to 100%FREE)
+        - `swap-size` - The size of your swap partition (defaults to 8G)
 
         ```
-        $ echo "alice" | sudo tee variables/username
-        $ echo "2G" | sudo tee variables/efi-size
-        $ echo "1T" | sudo tee variables/main-size
-        $ echo "20G" | sudo tee variables/swap-size
+        - $ echo "alice" | sudo tee variables/username
+        - $ echo "2G" | sudo tee variables/efi-size
+        - $ echo "1T" | sudo tee variables/main-size
+        - $ echo "20G" | sudo tee variables/swap-size
         ```
       '';
     };
