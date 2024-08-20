@@ -5,7 +5,7 @@
     mkdir -p $out/{.fonts,.icons,.themes} &&
     ln -s .. $out/home/Local
   '';
-  username = lib.removeSuffix "\n" (builtins.readFile "${./username}");
+  username = lib.removeSuffix "\n" (builtins.readFile "${./variables/username}");
 in {
   security.pam.services.login.makeHomeDir = true;
   security.pam.makeHomeDir.skelDirectory = "${skeleton}";
@@ -17,7 +17,7 @@ in {
     uid = 1000;
     group = "users";
     extraGroups = [ "wheel" "video" "input" ];
-    hashedPassword = lib.removeSuffix "\n" (builtins.readFile "${./password}");
+    hashedPassword = lib.removeSuffix "\n" (builtins.readFile "${./variables/password}");
   };
 
   home-manager.users."${username}" = import ./home;

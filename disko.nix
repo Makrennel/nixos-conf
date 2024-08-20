@@ -1,8 +1,8 @@
 {
   device ? throw "Set this to the disk device you want to use, e.g. /dev/nvme0n1 or /dev/vda",
-  efi-size ? "512M", # 1/2 a GiB by default 
-  swap-size ? "8G", # 参ったJust make it 8G by default...
-  main-size ? "100%FREE", # Use 100% of remaining space by default
+  efi-size ? "${./variables/efi-size}", # 1/2 a GiB by default 
+  swap-size ? "${./variables/swap-size}", # 参ったJust make it 8G by default...
+  main-size ? "${./variables/main-size}", # Use 100% of remaining space by default
   ...
 }: {
   disko.devices = {
