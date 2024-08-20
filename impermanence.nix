@@ -1,12 +1,12 @@
 { lib, ... }: {
   boot.initrd.postDeviceCommands = lib.mkAfter ''
     mkdir /btrfs_tmp
-    mount /dev/root_vg/root /btrfs_tmp
+    mount /dev/system/main /btrfs_tmp
 
     if [[ -e /btrfs_tmp/root ]]; then
-      mkdir -p /btrfs_tmp/old-roots
+      mkdir -p /btrfs_tmp/old
       timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%d_%H:%M:%S")
-      mv /btrfs_tmp/root "/btrfs_tmp/old-roots/$timestamp"
+      mv /btrfs_tmp/root "/btrfs_tmp/old/$timestamp"
     fi
 
     delete_subvolume_recursively() {
@@ -17,7 +17,7 @@
       btrfs subvolume delete "$1"
     }
 
-    for i in $(find /btrfs_tmp/old-roots/ -maxdepth 1 -mtime +30); do
+    for i in $(find /btrfs_tmp/old/ -maxdepth 1 -mtime +30); do
       delete_subvolume_recursively "$i"
     done
 

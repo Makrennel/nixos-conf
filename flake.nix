@@ -15,9 +15,7 @@
     stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, nixpkgs, disko, ... } @inputs: let
-    inherit (nixpkgs) lib;
-  in {
+  outputs = { self, nixpkgs, disko, ... } @inputs: {
     diskoConfigurations.default = import ./disko.nix;
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
@@ -27,12 +25,7 @@
         inputs.impermanence.nixosModules.impermanence
         inputs.stylix.nixosModules.stylix
 
-        (import ./disko.nix {
-          device = ;
-          efi-size = "512M";
-          main-size = "100%FREE";
-          swap-size = "8G";
-        })
+        (import ./disko.nix { device = "${./primary-disk}"; })
 
         ./hardware-configuration.nix
 
