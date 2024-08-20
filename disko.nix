@@ -1,9 +1,8 @@
 {
-  getVar = varpath: lib.removeSuffix "\n" (builtins.readFile varpath);
   device ? throw "Set this to the disk device you want to use, e.g. /dev/nvme0n1 or /dev/vda",
-  efi-size ? getVar "${./variables/efi-size}", # 1/2 a GiB by default 
-  swap-size ? getVar "${./variables/swap-size}", # 参ったJust make it 8G by default...
-  main-size ? getVar "${./variables/main-size}", # Use 100% of remaining space by default
+  efi-size ? lib.removeSuffix "\n" (builtins.readFile "${./variables/efi-size}"), # 1/2 a GiB by default 
+  swap-size ? lib.removeSuffix "\n" (builtins.readFile "${./variables/swap-size}"), # 参ったJust make it 8G by default...
+  main-size ? lib.removeSuffix "\n" (builtins.readFile "${./variables/main-size}"), # Use 100% of remaining space by default
   ...
 }: {
   disko.devices = {

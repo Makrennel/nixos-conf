@@ -15,7 +15,9 @@
     stylix.url = "github:danth/stylix";
   };
 
-  outputs = { self, nixpkgs, disko, ... } @inputs: {
+  outputs = { self, nixpkgs, disko, ... } @inputs: let
+    getVar = varpath: lib.removeSuffix "\n" (builtins.readFile varpath);
+  in {
     diskoConfigurations.default = import ./disko.nix;
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
@@ -25,7 +27,12 @@
         inputs.impermanence.nixosModules.impermanence
         inputs.stylix.nixosModules.stylix
 
-        (import ./disko.nix { device = "${./variables/disk}"; })
+        (import ./disko.nix {
+          device = getVar "${./variables/disk}";
+          efi-size = getVar "${./variables/efi-size}";
+          main-size = getVar "${./variables/main-size}";
+          swap-size = getvar "${./variables/swap-size}";
+        })
 
         ./hardware-configuration.nix
 
