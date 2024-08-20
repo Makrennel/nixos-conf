@@ -16,7 +16,7 @@
   };
 
   outputs = { self, nixpkgs, disko, ... } @inputs: let
-    getVar = varpath: lib.removeSuffix "\n" (builtins.readFile varpath);
+    getVar = varpath: nixpkgs.lib.removeSuffix "\n" (builtins.readFile varpath);
   in {
     diskoConfigurations.default = import ./disko.nix;
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
