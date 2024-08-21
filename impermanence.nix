@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ lib, pkgs, ... }: {
   boot.initrd.systemd.enable = true;
   boot.initrd.systemd.services.refresh-root = {
     description = "Creates a new root subvolume and backs up the previous one temporarily";
