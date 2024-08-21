@@ -1,4 +1,5 @@
 { config, pkgs, lib, inputs, ... }: {
+  boot.initrd.systemd.enable = true;
   fileSystems."/nix/persist".neededForBoot = true;
   environment.persistence."/nix/persist/system" = {
     hideMounts = true;
