@@ -4,9 +4,9 @@
   ];
 
   home.persistence."/nix/persist/user" = {
+    allowOther = true;
     directories = [
       "bin"
-      "home"
       "share/keyrings"
       "share/direnv"
       "share/fonts"
@@ -17,6 +17,7 @@
   };
 
   home.persistence."/nix/persist/user/applications" = {
+    allowOther = true;
     removePrefixDirectory = true;
     directories = [
       "Floorp/.floorp"

@@ -2,8 +2,8 @@
   stylix.targets.kitty.enable = false;
   programs.kitty = {
     enable = true;
-    font.name = "Jetbrains Mono";
-    font.package = pkgs.jetbrains-mono;
+    font.name = config.stylix.fonts.monospace.name;
+    font.package = config.stylix.fonts.monospace.package;
     font.size = 12;
     theme = "Kanagawa";
     extraConfig = ''

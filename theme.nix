@@ -6,8 +6,8 @@
   stylix.opacity.terminal = 0.7;
 
   stylix.fonts.monospace = {
-    package = pkgs.jetbrains-mono;
-    name = "Jetbrains Mono";
+    package = pkgs.inconsolata;
+    name = "Inconsolata";
   };
   stylix.fonts.serif = config.stylix.fonts.monospace;
   stylix.fonts.sansSerif = config.stylix.fonts.monospace;
@@ -48,6 +48,7 @@
     noto-fonts-emoji
     noto-fonts-lgc-plus
     noto-fonts-monochrome-emoji
+    #ricty
     sarasa-gothic
     unifont
   ];

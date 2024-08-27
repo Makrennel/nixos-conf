@@ -10,7 +10,7 @@
     XDG_DATA_HOME="$HOME/share";
     XDG_STATE_HOME="$HOME/state";
 
-    XDG_USER_HOME="$HOME/home";
+    XDG_USER_HOME="/home";
     XDG_VAR_HOME="$HOME/var";
 
     XDG_DESKTOP_DIR="${XDG_USER_HOME}/Desktop";

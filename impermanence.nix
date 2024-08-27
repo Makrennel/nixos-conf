@@ -1,20 +1,8 @@
-{ lib, pkgs, ... }: {
-  boot.initrd.systemd.enable = true;
-  boot.initrd.systemd.services.refresh-root = {
-    description = "Creates a new root subvolume and backs up the previous one temporarily";
-    wantedBy = [
-      "initrd.target"
-    ];
-    before = [
-      "sysroot.mount"
-    ];
-    path = with pkgs; [
-      btrfs-progs
-    ];
-    unitConfig.DefaultDependencies = "no";
-    serviceConfig.Type = "oneshot";
-    script = ''
-      mkdir /btrfs_tmp
+{ lib, pkgs, ... }: let
+  refresh-root-pkgs = with pkgs; [ btrfs-progs coreutils util-linux ];
+in {
+  boot.initrd.postDeviceCommands = lib.mkAfter ''
+    mkdir /btrfs_tmp
       mount /dev/system/main /btrfs_tmp
 
       if [[ -e /btrfs_tmp/root ]]; then
@@ -37,6 +25,5 @@
 
       btrfs subvolume create /btrfs_tmp/root
       umount /btrfs_tmp
-    '';
-  };
+  '';
 }

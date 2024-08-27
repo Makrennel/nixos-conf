@@ -4,6 +4,7 @@
     ./kitty.nix
     ./hyprland
     ./nwg
+    ./persistence.nix
     ./waybar
   ];
 

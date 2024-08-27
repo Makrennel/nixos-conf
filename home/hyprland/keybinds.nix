@@ -1,13 +1,18 @@
 { config, lib, ... }: let
+  # Keyboard Binds
   bind = [
     "SUPER, Return, exec, $TERMINAL"
     "SUPER CONTROL, Return, exec, $LAUNCHER"
     "SUPER SHIFT, Q, exit"
 
+    "SUPER, G, fullscreen, 1" # Maximized
+    "SUPER ALT, G, fullscreenstate, 1" # Maximized Client
+    "SUPER CONTROL, G, fullscreenstate, 0" # None Client
+    "SUPER, F, fullscreen, 0" # Fullscreen
+    "SUPER ALT, F, fullscreenstate, 2" # Fullscreen Client
+    "SUPER CONTROL, F, fullscreenstate, 3" # Both Fullscreen and Maximized
+
     "SUPER, D, killactive"
-    "SUPER, F, fullscreen, 0"
-    "SUPER, G, fullscreen, 1"
-    "SUPER ALT, F, fakefullscreen, 0"
     "SUPER, C, togglefloating"
   ] ++ (builtins.concatLists (builtins.genList (x:
     let ws = let c = (x + 1) / 10;
@@ -46,5 +51,14 @@
     "SUPER CONTROL, K, movewindow, u"
     "SUPER CONTROL, L, movewindow, r"
   ];
-in { config.wayland.windowManager.hyprland.settings.bind = lib.mkIf config.makrenos.hyprland.enable bind; }
+  # Mouse Binds
+  bindm = [
+    "SUPER, mouse:272, movewindow"
+    "SUPER, mouse:273, resizewindow"
+  ];
+in {
+  wayland.windowManager.hyprland.settings = lib.mkIf config.makrenos.hyprland.enable {
+    inherit bind bindm;
+  };
+}
 

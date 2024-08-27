@@ -49,6 +49,11 @@
       layout = lib.mkIf config.makrenos.hyprland.hyprscroller "scroller";
     };
 
+    misc = {
+      new_window_takes_over_fullscreen = 1;
+      exit_window_retains_fullscreen = true;
+    };
+
     plugins.scroller = lib.mkIf config.makrenos.hyprland.hyprscroller {
       column_default_width = "onehalf";
       focus_wrap = false;

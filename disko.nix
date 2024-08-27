@@ -54,6 +54,7 @@
         content.type = "btrfs";
         content.subvolumes = {
           "/root".mountpoint = "/";
+          "/home".mountpoint = "/home";
           "/nix".mountpoint = "/nix";
           "/nix".mountOptions = [ "noatime" ];
           "/persist".mountpoint = "/nix/persist";

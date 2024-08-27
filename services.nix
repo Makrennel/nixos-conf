@@ -1,15 +1,48 @@
-{ config, lib, pkgs, ... }: let
-  use-tty6 = pkgs.writeShellScriptBin "use-tty6" "chvt 6";
-in {
+{ config, lib, pkgs, ... }: {
+  systemd.services.build-home = let
+    username = lib.removeSuffix "\n" (builtins.readFile "${./variables/username}");
+  in {
+    enable = true;
+    description = "Sets up a fresh home directory for the user if it is not present";
+    serviceConfig.Type = "oneshot";
+    wantedBy = [ "home-manager-${username}.service" ];
+    before = [ "home-manager-${username}.service" ];
+    path = with pkgs; [ mount ];
+    script = ''
+      if [ ! -d "/user" ]; then
+        mkdir -p /home/{Desktop,Documents,Downloads,Images,Local,Music,Repositories,Shared,Templates,Videos}
+        mkdir -p /user/{bin,cache,config,share,state,var}
+        mkdir -p /user/{.bin,.cache,.config,.local,.var}
+        mkdir -p /user/share/{fonts,icons,themes}
+        mkdir -p /user/{.fonts,.icons,.themes}
+
+        chown -R 1000 /user /home
+        chgrp -R 100 /user /home
+
+        mount -B /user /home/Local
+        mount -B /user /user/.local
+
+        mount -B /user/bin /user/.bin
+        mount -B /user/cache /user/.cache
+        mount -B /user/config /user/.config
+        mount -B /user/var /user/.var
+
+        mount -B /user/share/fonts /user/.fonts
+        mount -B /user/share/icons /user/.icons
+        mount -B /user/share/themes /user/.themes
+      fi
+    '';
+  };
+
   systemd.services.use-tty6 = {
     enable = true;
     description = "Automatically switch to tty6 on boot";
     serviceConfig.Type = "simple";
-    serviceConfig.ExecStart = "${use-tty6}/bin/use-tty6";
     wantedBy = [ "multi-user.target" ];
     path = with pkgs; [
       kbd
     ];
+    script = "chvt 6";
   };
 }
 

@@ -8,7 +8,6 @@
   };
 
   imports = [
-#    inputs.hyprland.homeManagerModules.default
     ./execs.nix
     ./general.nix
     ./keybinds.nix
@@ -16,7 +15,6 @@
 
   config = lib.mkIf config.makrenos.hyprland.enable {
     wayland.windowManager.hyprland.enable = true;
-#    wayland.windowManager.hyprland.package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     wayland.windowManager.hyprland.plugins = [
     ] ++ lib.optional config.makrenos.hyprland.hyprscroller pkgs.hyprlandPlugins.hyprscroller;
   };

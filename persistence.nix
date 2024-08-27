@@ -1,4 +1,5 @@
 { config, pkgs, lib, inputs, ... }: {
+  programs.fuse.userAllowOther = true;
   fileSystems."/nix/persist".neededForBoot = true;
   environment.persistence."/nix/persist/system" = {
     hideMounts = true;
