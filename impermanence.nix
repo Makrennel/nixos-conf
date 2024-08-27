@@ -1,6 +1,4 @@
-{ lib, pkgs, ... }: let
-  refresh-root-pkgs = with pkgs; [ btrfs-progs coreutils util-linux ];
-in {
+{ lib, pkgs, ... }: {
   boot.initrd.postDeviceCommands = lib.mkAfter ''
     mkdir /btrfs_tmp
       mount /dev/system/main /btrfs_tmp
