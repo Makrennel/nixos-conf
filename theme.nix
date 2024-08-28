@@ -6,7 +6,7 @@
   stylix.opacity.terminal = 0.7;
 
   stylix.fonts.monospace = {
-    package = pkgs.inconsolata;
+    package = pkgs.nerdfonts};
     name = "Inconsolata";
   };
   stylix.fonts.serif = config.stylix.fonts.monospace;
@@ -42,6 +42,7 @@
     inconsolata
     jetbrains-mono
     liberation_ttf
+    nerdfonts
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif

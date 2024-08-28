@@ -15,5 +15,12 @@
 
     fastfetch
   '';
+
+  users.defaultUserShell = pkgs.zsh;
+  programs.zsh.enable = true;
+  programs.zsh.interactiveShellInit = ''
+    source ${pkgs.grml-zsh-config}/etc/zsh/zshrc
+    eval "$(${pkgs.starship}/bin/starship init zsh)"
+  '';
 }
 
