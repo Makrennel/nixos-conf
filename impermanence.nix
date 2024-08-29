@@ -1,8 +1,8 @@
-{ lib, pkgs, ... }: let
+{ config, lib, pkgs, ... }: let
   persistent-directories = lib.lists.map (directory:
     "[ ! -e \"/btrfs_tmp/system${directory.directory}\" ] && mkdir -p /btrfs_tmp/system${directory.directory}\\n"
   ) config.environment.persistence."/nix/persist/system".directories;
-  prepare-persistence = lib.concatStrings persistent-directories
+  prepare-persistence = lib.concatStrings persistent-directories;
 in {
   boot.initrd.postDeviceCommands = lib.mkAfter ''
     mkdir /btrfs_tmp

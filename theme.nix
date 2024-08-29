@@ -6,7 +6,7 @@
   stylix.opacity.terminal = 0.7;
 
   stylix.fonts.monospace = {
-    package = pkgs.nerdfonts};
+    package = pkgs.nerdfonts;
     name = "Inconsolata";
   };
   stylix.fonts.serif = config.stylix.fonts.monospace;
