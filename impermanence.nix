@@ -1,9 +1,4 @@
-{ config, lib, pkgs, ... }: let
-  persistent-directories = lib.lists.map (directory:
-    "[ ! -e \"/btrfs_tmp/system${directory.directory}\" ] && mkdir -p /btrfs_tmp/system${directory.directory}\\n"
-  ) config.environment.persistence."/nix/persist/system".directories;
-  prepare-persistence = lib.concatStrings persistent-directories;
-in {
+{ config, lib, pkgs, ... }: {
   boot.initrd.postDeviceCommands = lib.mkAfter ''
     mkdir /btrfs_tmp
     mount /dev/system/main /btrfs_tmp
@@ -27,11 +22,6 @@ in {
     done
 
     btrfs subvolume create /btrfs_tmp/root
-    umount /btrfs_tmp
-
-    # Fresh installation will fail to boot if we don't make sure the default persistent directories already exist
-    mount -o subvol=/persist /dev/system/main /btrfs_tmp
-    ${prepare-persistence}
     umount /btrfs_tmp
   '';
 }
