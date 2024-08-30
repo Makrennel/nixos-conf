@@ -5,6 +5,7 @@
     fastfetch
     fbterm
     git
+    htop
     kitty
     neovim
     nwg-drawer

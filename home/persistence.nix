@@ -14,6 +14,9 @@
       "share/themes"
       "var"
     ];
+    files = [
+      "state/zsh-history"
+    ];
   };
 
   home.persistence."/nix/persist/user/applications" = {
@@ -22,6 +25,8 @@
     directories = [
       "Floorp/.floorp"
       "Mozilla/.mozilla"
+      "nwg-shell/config/nwg-panel"
+      "nwg-shell/share/nwg-panel"
       { directory = "Steam/share/Steam"; method = "symlink"; }
     ];
   };

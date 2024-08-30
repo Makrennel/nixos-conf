@@ -8,9 +8,9 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     impermanence.url = "github:nix-community/impermanence/create-persistent-storage-dirs";
-#    hyprland.url = "git+https://github.com/hyprwm/hyprland?submodules=1&ref=v0.41.0";
-#    hyprscroller.url = "github:dawsers/hyprscroller";
-#    hyprscroller.inputs.hyprland.follows = "hyprland";
+    hyprland.url = "git+https://github.com/hyprwm/hyprland?submodules=1&rev=9a09eac79b85c846e3a865a9078a3f8ff65a9259";
+    hyprscroller.url = "github:dawsers/hyprscroller";
+    hyprscroller.inputs.hyprland.follows = "hyprland";
     nixvim.url = "github:nix-community/nixvim";
     stylix.url = "github:danth/stylix";
   };
@@ -52,6 +52,15 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.extraSpecialArgs = { inherit inputs; };
+        }
+
+        { # Extra Binary Caches
+          nix.settings.substituters = [
+            "https://hyprland.cachix.org"
+          ];
+          nix.settings.trusted-public-keys = [
+            "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+          ];
         }
       ];
     };

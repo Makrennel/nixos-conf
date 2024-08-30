@@ -9,6 +9,7 @@
     before = [ "home-manager-${username}.service" ];
     path = with pkgs; [ mount ];
     script = ''
+      [ ! -e /nix/persist/user ] && mkdir -p /nix/persist/user && chown -R 1000 /nix/persist/user && chgrp -R 100 /nix/persist/user
       if [ ! -d "/user" ]; then
         mkdir -p /home/{Desktop,Documents,Downloads,Images,Local,Music,Repositories,Shared,Templates,Videos}
         mkdir -p /user/{bin,cache,config,share,state,var}
