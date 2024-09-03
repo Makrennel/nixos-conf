@@ -1,8 +1,8 @@
-{ ... }: {
+{ pkgs, ... }: {
   environment.sessionVariables = rec {
-    EDITOR = "nvim";
-    TERMINAL = "kitty";
-    LAUNCHER = "nwg-drawer";
+    EDITOR = "${pkgs.neovim}/bin/nvim";
+    TERMINAL = "${pkgs.kitty}/bin/kitty";
+    LAUNCHER = "${pkgs.nwg-drawer}/bin/nwg-drawer";
 
     XDG_BIN_HOME="$HOME/bin";
     XDG_CONFIG_HOME="$HOME/config";
@@ -149,6 +149,10 @@
     PLATFORMIO_CORE_DIR="${XDG_DATA_HOME}/platformio";
     PLTUSERHOME="${XDG_DATA_HOME}/racket";
     PGPASSFILE="${XDG_CONFIG_HOME}/pg_pass";
+    PIPX_HOME="${XDG_DATA_HOME}/pipx";
+    PIPX_BIN_DIR="${PIPX_HOME}/bin";
+    PIPX_GLOBAL_HOME="${XDG_DATA_HOME}/pipx-global";
+    PIPX_GLOBAL_BIN_DIR="${PIPX_GLOBAL_HOME}/bin";
     PYENV="${XDG_DATA_HOME}/pyenv";
     PYTHONUSERBASE="${XDG_DATA_HOME}/python";
     RBENV_ROOT="${XDG_DATA_HOME}/rbenv";

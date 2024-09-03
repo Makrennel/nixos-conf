@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }: {
   environment.loginShellInit = ''
-    [ "$(tty)" = "/dev/tty6" ] && exec Hyprland || [ "$TERM" = "linux" ] && exec fbterm tmux
+    [ "$(tty)" = "/dev/tty6" ] && exec Hyprland || [ "$TERM" = "linux" ] && [ "$(tty)" != "/dev/tty1" ] && exec fbterm tmux
   '';
 
   environment.interactiveShellInit = ''

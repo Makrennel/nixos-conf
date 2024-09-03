@@ -1,5 +1,9 @@
 { config, lib, ... }: {
   wayland.windowManager.hyprland.settings = lib.mkIf config.makrenos.hyprland.enable {
+    monitor = [
+      "DP-1, 2560x1440@144, 0x0, 1"
+      "DP-2, 2560x1440@60, 2560x240, 1"
+    ];
     input = {
       kb_layout = "gb";
       kb_variant = "mac";
@@ -51,7 +55,7 @@
 
     misc = {
       new_window_takes_over_fullscreen = 1;
-      exit_window_retains_fullscreen = true;
+      #exit_window_retains_fullscreen = true;
     };
 
     plugins.scroller = lib.mkIf config.makrenos.hyprland.hyprscroller {

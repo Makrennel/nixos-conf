@@ -8,9 +8,11 @@
   };
 
   imports = [
+    ./animations.nix
     ./execs.nix
     ./general.nix
     ./keybinds.nix
+    ./rules.nix
   ];
 
   config = lib.mkIf config.makrenos.hyprland.enable {

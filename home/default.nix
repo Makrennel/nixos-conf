@@ -5,6 +5,8 @@
     ./hyprland
     ./nwg
     ./persistence.nix
+    ./qimgv.nix
+    ./ranger.nix
     ./shell.nix
     ./waybar
   ];

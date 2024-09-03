@@ -8,8 +8,8 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     impermanence.url = "github:nix-community/impermanence/create-persistent-storage-dirs";
-    hyprland.url = "git+https://github.com/hyprwm/hyprland?submodules=1&rev=9a09eac79b85c846e3a865a9078a3f8ff65a9259";
-    hyprscroller.url = "github:dawsers/hyprscroller";
+    hyprland.url = "git+https://github.com/hyprwm/hyprland?submodules=1&rev=918d8340afd652b011b937d29d5eea0be08467f5";
+    hyprscroller.url = "github:dawsers/hyprscroller/4121019cde46c80fce78cf985a4bb8a04f74712e";
     hyprscroller.inputs.hyprland.follows = "hyprland";
     nixvim.url = "github:nix-community/nixvim";
     stylix.url = "github:danth/stylix";

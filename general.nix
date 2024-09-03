@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: {
+{ config, inputs, lib, pkgs, ... }: {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
 
@@ -8,6 +8,7 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.device = "nodev";
+  boot.loader.grub.gfxmodeEfi = "1280x1024x32";
 
   networking.hostName = "isshiki-iroha";
   networking.networkmanager.enable = true;
@@ -26,6 +27,11 @@
   services.xserver.xkb.options = "caps:swapescape";
 
   hardware.graphics.enable = true;
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    open = false;
+  };
 
   services.printing.enable = true;
 

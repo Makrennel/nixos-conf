@@ -6,11 +6,11 @@
     "SUPER SHIFT, Q, exit"
 
     "SUPER, G, fullscreen, 1" # Maximized
-    "SUPER ALT, G, fullscreenstate, 1" # Maximized Client
-    "SUPER CONTROL, G, fullscreenstate, 0" # None Client
+    #"SUPER ALT, G, fullscreenstate, 1" # Maximized Client
+    #"SUPER CONTROL, G, fullscreenstate, 0" # None Client
     "SUPER, F, fullscreen, 0" # Fullscreen
-    "SUPER ALT, F, fullscreenstate, 2" # Fullscreen Client
-    "SUPER CONTROL, F, fullscreenstate, 3" # Both Fullscreen and Maximized
+    #"SUPER ALT, F, fullscreenstate, 2" # Fullscreen Client
+    #"SUPER CONTROL, F, fullscreenstate, 3" # Both Fullscreen and Maximized
 
     "SUPER, D, killactive"
     "SUPER, C, togglefloating"

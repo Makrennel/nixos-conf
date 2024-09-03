@@ -15,6 +15,7 @@ in {
   home-manager.sharedModules = [
     ({ config, lib, ... }: {
       home.file."home".source = config.lib.file.mkOutOfStoreSymlink "/home";
+      home.file.".local".source = config.lib.file.mkOutOfStoreSymlink "/user";
 
       xdg.cacheHome = "/user/cache";
       xdg.configHome = "/user/config";
@@ -24,6 +25,7 @@ in {
       xdg.userDirs.enable = true;
       xdg.userDirs.desktop = "/home/Desktop";
       xdg.userDirs.documents = "/home/Documents";
+      xdg.userDirs.download = "/home/Downloads";
       xdg.userDirs.pictures = "/home/Images";
       xdg.userDirs.music = "/home/Music";
       xdg.userDirs.publicShare = "/home/Shared";

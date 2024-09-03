@@ -1,0 +1,81 @@
+{ config, lib, pkgs, ... }: with config.lib.stylix.colors; {
+  xdg.configFile."qimgv/qimgv.conf".text = ''
+    [General]
+    JPEGSaveQuality=95
+    absoluteZoomStep=false
+    autoResizeLimit=100
+    autoResizeWindow=false
+    backgroundOpacity=0.7
+    blurBackground=false
+    confirmDelete=true
+    confirmTrash=true
+    cursorAutohiding=true
+    defaultCropAction=0
+    defaultFitMode=0
+    defaultViewMode=0
+    drawTransparencyGrid=false
+    enableSmoothScroll=true
+    expandImage=false
+    expandLimit=2
+    firstRun=false
+    focusPointIn1to1Mode=1
+    folderEndAction=0
+    folderViewIconSize=240
+    imageScrolling=2
+    infoBarFullscreen=true
+    infoBarWindowed=false
+    jxlAnimation=false
+    keepFitMode=false
+    lastVerMajor=1
+    lastVerMicro=2
+    lastVerMinor=0
+    loopSlideshow=false
+    mpvBinary=${pkgs.mpv}/bin/mpv
+    openInFullscreen=false
+    panelEnabled=true
+    panelFullscreenOnly=false
+    panelPosition=bottom
+    panelPreviewsSize=190
+    playVideoSounds=false
+    scalingFilter=1
+    showSaveOverlay=true
+    slideshowInterval=3000
+    smoothAnimatedImages=true
+    smoothUpscaling=true
+    sortingMode=0
+    squareThumbnails=false
+    thumbPanelStyle=1
+    thumbnailCache=true
+    thumbnailerThreads=4
+    unloadThumbs=true
+    useOpenGL=false
+    usePreloader=true
+    useSystemColorScheme=false
+    videoPlayback=true
+    windowTitleExtendedInfo=true
+    zoomIndicatorMode=2
+    zoomStep=0.10000000149011612
+    
+    [Controls]
+    shortcuts="zoomIn=+", "frameStepBack=,", "zoomOut=-", "frameStep=.", "fitWindow=1", "fitWidth=2", "fitNormal=3", "nextImage=Alt+J", "prevImage=Alt+K", "exit=Alt+X", "folderView=Backspace", "copyFile=C", "copyFileClipboard=Ctrl+C", "showInDirectory=Ctrl+D", "zoomOut=Ctrl+Down", "zoomOut=Ctrl+J", "zoomIn=Ctrl+K", "rotateLeft=Ctrl+L", "seekVideoBackward=Ctrl+Left", "open=Ctrl+O", "print=Ctrl+P", "exit=Ctrl+Q", "rotateRight=Ctrl+R", "seekVideoForward=Ctrl+Right", "save=Ctrl+S", "copyPathClipboard=Ctrl+Shift+C", "saveAs=Ctrl+Shift+S", "zoomIn=Ctrl+Up", "pasteFile=Ctrl+V", "zoomOutCursor=Ctrl+WheelDown", "zoomInCursor=Ctrl+WheelUp", "discardEdits=Ctrl+Z", "toggleShuffle=Ctrl+`", "moveToTrash=Del", "scrollDown=Down", "jumpToLast=End", "folderView=Enter", "toggleFullscreen=F", "toggleFullscreen=F11", "renameFile=F2", "reloadImage=F5", "scrollLeft=H", "jumpToFirst=Home", "toggleImageInfo=I", "scrollDown=J", "scrollUp=K", "scrollRight=L", "toggleFullscreen=LMB_DoubleClick", "prevImage=Left", "moveFile=M", "contextMenu=Menu", "openSettings=P", "exit=Q", "resize=R", "contextMenu=RMB", "nextImage=Right", "removeFile=Shift+Del", "toggleFullscreenInfoBar=Shift+F", "prevDirectory=Shift+Left", "nextDirectory=Shift+Right", "toggleFitMode=Space", "scrollUp=Up", "flipV=V", "crop=X", "prevImage=XButton1", "nextImage=XButton2", "toggleSlideshow=`"
+    
+    [Scripts]
+    script\size=0
+  '';
+
+  xdg.configFile."qimgv/theme.conf".text = ''
+    [Colors]
+    accent=#${base05-hex}
+    background=#${base00-hex}
+    background_fullscreen=#${base00-hex}
+    folderview=#242424
+    folderview_topbar=#383838
+    icons=#a4a4a4
+    overlay=#${base00-hex}
+    overlay_text=#${base05-hex}
+    scrollbar=#5a5a5a
+    text=#${base05-hex}
+    widget=#252525
+    widget_border=#2c2c2c
+  '';
+}

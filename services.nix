@@ -13,7 +13,7 @@
       if [ ! -d "/user" ]; then
         mkdir -p /home/{Desktop,Documents,Downloads,Images,Local,Music,Repositories,Shared,Templates,Videos}
         mkdir -p /user/{bin,cache,config,share,state,var}
-        mkdir -p /user/{.bin,.cache,.config,.local,.var}
+        mkdir -p /user/{.bin,.cache,.config,.var}
         mkdir -p /user/share/{fonts,icons,themes}
         mkdir -p /user/{.fonts,.icons,.themes}
 
@@ -21,7 +21,6 @@
         chgrp -R 100 /user /home
 
         mount -B /user /home/Local
-        mount -B /user /user/.local
 
         mount -B /user/bin /user/.bin
         mount -B /user/cache /user/.cache
