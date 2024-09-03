@@ -11,7 +11,7 @@ in {
     hashedPassword = lib.removeSuffix "\n" (builtins.readFile "${../variables/password}");
   };
 
-  home-manager.users."${username}" = import ./home;
+  home-manager.users."${username}" = import ../home;
   home-manager.sharedModules = [
     ({ config, lib, ... }: {
       home.file."home".source = config.lib.file.mkOutOfStoreSymlink "/home";
