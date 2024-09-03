@@ -18,7 +18,7 @@
   outputs = { self, nixpkgs, disko, ... } @inputs: let
     getVar = varpath: nixpkgs.lib.removeSuffix "\n" (builtins.readFile varpath);
   in {
-    diskoConfigurations.default = import ./disko.nix;
+    diskoConfigurations.default = import ./system/disko.nix;
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
@@ -27,25 +27,25 @@
         inputs.impermanence.nixosModules.impermanence
         inputs.stylix.nixosModules.stylix
 
-        (import ./disko.nix {
+        (import ./system/disko.nix {
           device = getVar "${./variables/disk}";
           efi-size = getVar "${./variables/efi-size}";
           main-size = getVar "${./variables/main-size}";
           swap-size = getVar "${./variables/swap-size}";
         })
 
-        ./general.nix # Equivalent to configuration.nix
         ./hardware-configuration.nix
+        ./system/general.nix # Equivalent to configuration.nix
 
-        ./env.nix
-        ./impermanence.nix
-        ./neovim.nix
-        ./packages.nix
-        ./persistence.nix
-        ./services.nix
-        ./shell.nix
-        ./theme.nix
-        ./user.nix
+        ./system/env.nix
+        ./system/impermanence.nix
+        ./system/neovim.nix
+        ./system/packages.nix
+        ./system/persistence.nix
+        ./system/services.nix
+        ./system/shell.nix
+        ./system/theme.nix
+        ./system/user.nix
 
         {
           home-manager.backupFileExtension = "backup";

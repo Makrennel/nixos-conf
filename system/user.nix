@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }: let
-  username = lib.removeSuffix "\n" (builtins.readFile "${./variables/username}");
+  username = lib.removeSuffix "\n" (builtins.readFile "${../variables/username}");
 in {
   users.users."${username}" = {
     home = "/user";
@@ -8,7 +8,7 @@ in {
     uid = 1000;
     group = "users";
     extraGroups = [ "wheel" "video" "input" ];
-    hashedPassword = lib.removeSuffix "\n" (builtins.readFile "${./variables/password}");
+    hashedPassword = lib.removeSuffix "\n" (builtins.readFile "${../variables/password}");
   };
 
   home-manager.users."${username}" = import ./home;

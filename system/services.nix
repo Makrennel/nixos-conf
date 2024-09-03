@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }: {
   systemd.services.build-home = let
-    username = lib.removeSuffix "\n" (builtins.readFile "${./variables/username}");
+    username = lib.removeSuffix "\n" (builtins.readFile "${../variables/username}");
   in {
     enable = true;
     description = "Sets up a fresh home directory for the user if it is not present";
