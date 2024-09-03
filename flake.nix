@@ -39,7 +39,6 @@
 
         ./system/env.nix
         ./system/impermanence.nix
-        ./system/neovim.nix
         ./system/packages.nix
         ./system/persistence.nix
         ./system/services.nix

@@ -3,6 +3,7 @@
     ./fbterm.nix
     ./kitty.nix
     ./hyprland
+    ./neovim.nix
     ./nwg
     ./persistence.nix
     ./qimgv.nix
